@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'good evening',
+                        'Good evening',
                         style: GoogleFonts.montserrat(
                             color: const Color.fromRGBO(178, 52, 255, 1),
                             fontSize: 14,
