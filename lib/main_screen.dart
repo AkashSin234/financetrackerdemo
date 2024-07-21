@@ -4,20 +4,21 @@ import 'package:finance_tracker/Screens/navpages/user_profile_page.dart';
 import 'package:finance_tracker/Screens/navpages/wallet_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
   List pages = [
-    SummaryPage(),
-    HomePage(),
-    WalletPage(),
-    UserProfilePage(),
+    const SummaryPage(),
+    const HomePage(),
+    const WalletPage(),
+    const UserProfilePage(),
   ];
   int currentIndex = 1;
 

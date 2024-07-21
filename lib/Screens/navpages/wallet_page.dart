@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class WalletPage extends StatelessWidget {
+  const WalletPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('MyPage')),
-      body: Container(child: Text('WalletPage')),
+      appBar: AppBar(title: const Text('MyPage')),
+      body: const Text('WalletPage'),
     );
   }
 }

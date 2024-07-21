@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FabShape extends ShapeBorder {
   final double borderRadius; // Radius for the rounded corners
 
-  FabShape({this.borderRadius = 17.0});
+  const FabShape({this.borderRadius = 17.0});
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(borderRadius);
@@ -13,7 +13,7 @@ class FabShape extends ShapeBorder {
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     final path = Path();
     final radius = borderRadius;
-    
+
     // Create kite-like shape
     path.moveTo(rect.width / 2, rect.top);
     path.lineTo(rect.right, rect.height / 2);
@@ -23,13 +23,13 @@ class FabShape extends ShapeBorder {
 
     // Create rounded rectangle and combine it with kite-like shape
     path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
-    
+
     // Apply rotation transformation
     final matrix = Matrix4.identity()
       ..translate(rect.center.dx, rect.center.dy)
       ..rotateZ(pi / 4) // Rotate 45 degrees
       ..translate(-rect.center.dx, -rect.center.dy);
-    
+
     final transformedPath = path.transform(matrix.storage);
 
     return transformedPath;
@@ -37,7 +37,8 @@ class FabShape extends ShapeBorder {
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
-    return getOuterPath(rect, textDirection: textDirection);   //innerpath is same as outer path
+    return getOuterPath(rect,
+        textDirection: textDirection); //innerpath is same as outer path
   }
 
   @override
