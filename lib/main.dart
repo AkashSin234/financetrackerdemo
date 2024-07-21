@@ -1,4 +1,4 @@
-import 'package:finance_tracker/Screens/navpages/main_page.dart';
+import 'package:finance_tracker/main_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,13 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Finance Tracker',
+      
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'SFPro',
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: MainScreen(),
     );
   }
 }
