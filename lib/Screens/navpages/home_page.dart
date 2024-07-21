@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         child: Column(
           children: [
@@ -60,8 +61,13 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Your expenses', style: TextStyle(fontFamily: 'SFPro', fontSize: 16, fontWeight:FontWeight.w300 ),),
-                
+                const Text(
+                  'Your expenses',
+                  style: TextStyle(
+                      fontFamily: 'SFPro',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -70,7 +76,10 @@ class _HomePageState extends State<HomePage> {
                       child: ShaderMask(
                         shaderCallback: (Rect bounds) {
                           return const LinearGradient(
-                            colors: [Color.fromRGBO(178, 52, 255, 1), Color.fromRGBO(62, 0, 100, 1)],
+                            colors: [
+                              Color.fromRGBO(178, 52, 255, 1),
+                              Color.fromRGBO(62, 0, 100, 1)
+                            ],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ).createShader(bounds);
@@ -96,7 +105,11 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       height: 10,
-                      child: Image.asset('assets/rupee-indian.png', color: const Color.fromRGBO(178, 52, 255, 1),),),
+                      child: Image.asset(
+                        'assets/rupee-indian.png',
+                        color: const Color.fromRGBO(178, 52, 255, 1),
+                      ),
+                    ),
                     Text(
                       '98,450 ',
                       style: GoogleFonts.montserrat(
@@ -106,7 +119,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const Text(
                       'allocated',
-                      style: TextStyle(fontFamily: 'SFPro', fontSize: 13, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontFamily: 'SFPro',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -116,7 +132,6 @@ class _HomePageState extends State<HomePage> {
               height: 30,
             ),
             Text('List comes here'),
-            
           ],
         ),
       ),
@@ -129,14 +144,14 @@ class _HomePageState extends State<HomePage> {
           ),
           FloatingActionButton(
             onPressed: () {},
-            backgroundColor: Colors.transparent, // Make background transparent to see the custom shape
+            backgroundColor: Colors
+                .transparent, // Make background transparent to see the custom shape
             elevation: 0,
             splashColor: Colors.black, // Remove elevation
             child: const Icon(
               Icons.add,
               color: Colors.white,
               size: 32,
-              
             ), //just for testing that the button is actually a button
           ),
         ],
@@ -156,6 +171,3 @@ class FabShapePainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
-    
-  
-

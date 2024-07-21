@@ -35,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         onTap: onTap,
         currentIndex: currentIndex,
+        backgroundColor: Colors.white,
         selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showSelectedLabels: false,
@@ -42,11 +43,14 @@ class _MainScreenState extends State<MainScreen> {
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.history), label: 'recent transactions'),
-          BottomNavigationBarItem(icon: Icon(FluentIcons.home_32_regular, ),
-label: 'home'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                FluentIcons.home_32_regular,
+              ),
+              label: 'home'),
           BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'wallet'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person),label: 'user profile')
+              icon: Icon(CupertinoIcons.person), label: 'user profile')
         ],
       ),
     );
