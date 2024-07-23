@@ -10,6 +10,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final gradient = const LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+    Color.fromRGBO(61, 77, 217, 1),
+    Color.fromRGBO(23, 39, 191, 1)
+  ]);
+
+  final textstyle = GoogleFonts.inter(fontSize: 32, fontWeight: FontWeight.w500);
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +46,15 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Good evening',
-                      style: GoogleFonts.montserrat(
-                          color: const Color.fromRGBO(178, 52, 255, 1),
+                      'good evening',
+                      style: GoogleFonts.inter(
+                          color: const Color.fromRGBO(61, 77, 217, 1),
                           fontSize: 14,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w300),
                     ),
                     Text(
                       'Prashant',
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.inter(
                           fontSize: 14, color: Colors.black),
                     ),
                   ],
@@ -61,68 +73,49 @@ class _HomePageState extends State<HomePage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Your expenses',
-                style: TextStyle(
-                    fontFamily: 'SFPro',
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300),
+                style: GoogleFonts.inter(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w300),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 22,
-                    child: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const LinearGradient(
-                          colors: [
-                            Color.fromRGBO(178, 52, 255, 1),
-                            Color.fromRGBO(62, 0, 100, 1)
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ).createShader(bounds);
-                      },
-                      blendMode: BlendMode.srcIn,
-                      child: Image.asset(
-                        'assets/rupee-indian.png',
-                        color: Colors.white,
-                      ),
-                    ),
+                  Baseline(baseline: 40,
+                  baselineType: TextBaseline.alphabetic,
+                    child: ShaderMask(shaderCallback: (bounds) {
+                      return gradient.createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
+                    },
+                      child: Text('₹', style: textstyle.copyWith(
+                          color: Colors.white, // Set text color to white so the gradient shows
+                        ),)),
                   ),
-                  Text(
-                    '17,750.00',
-                    style: GoogleFonts.manrope(
+                  const Text(
+                    '58,910.27',
+                    style: TextStyle(
+                      letterSpacing: 2.05,
+                      fontFamily: 'Satoshi',
+                      fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 40,
-                        fontWeight: FontWeight.w400),
+                        ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 10,
-                    child: Image.asset(
-                      'assets/rupee-indian.png',
-                      color: const Color.fromRGBO(178, 52, 255, 1),
-                    ),
-                  ),
-                  Text(
-                    '98,450 ',
-                    style: GoogleFonts.montserrat(
-                        color: const Color.fromRGBO(178, 52, 255, 1),
+                  
+                  const Text(
+                    '₹98,450 ',
+                    style: TextStyle(
+                      fontFamily: 'Satoshi',
+                        color: const Color.fromRGBO(61, 77, 217, 1),
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
-                  const Text(
+                   Text(
                     'allocated',
-                    style: TextStyle(
-                        fontFamily: 'SFPro',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(fontSize: 13, color: Colors.black, fontWeight: FontWeight.w400)
                   ),
                 ],
               ),

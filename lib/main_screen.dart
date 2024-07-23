@@ -2,9 +2,8 @@ import 'package:finance_tracker/Screens/navpages/home_page.dart';
 import 'package:finance_tracker/Screens/navpages/summary_page.dart';
 import 'package:finance_tracker/Screens/navpages/user_profile_page.dart';
 import 'package:finance_tracker/Screens/navpages/wallet_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,12 +14,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List pages = [
-    const SummaryPage(),
     const HomePage(),
+    const SummaryPage(),
     const WalletPage(),
     const UserProfilePage(),
   ];
-  int currentIndex = 1;
+  int currentIndex = 0;
 
   void onTap(int index) {
     setState(() {
@@ -33,26 +32,33 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        
         type: BottomNavigationBarType.fixed,
         onTap: onTap,
         currentIndex: currentIndex,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.purple,
+        selectedItemColor: Color.fromRGBO(61, 77, 217, 1),
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
-              icon: Icon(Icons.history), label: 'recent transactions'),
+              icon: currentIndex == 0 ? SvgIcon(size: 25,
+                icon: SvgIconData('assets/house.fill.svg')):SvgIcon(size: 25,
+                  icon: SvgIconData('assets/house.svg')), label: 'recent transactions'),
           BottomNavigationBarItem(
-              icon: Icon(
-                FluentIcons.home_32_regular,
-              ),
+              icon: currentIndex == 1 ? SvgIcon(size: 25,
+                icon: SvgIconData('assets/creditcard.fill.svg')):SvgIcon(size: 25,
+                  icon: SvgIconData('assets/creditcard.svg'),),
               label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.wallet), label: 'wallet'),
+          BottomNavigationBarItem(icon: currentIndex == 2 ? SvgIcon(size: 25,
+            icon: SvgIconData('assets/scroll.fill.svg')):SvgIcon(size: 25,
+              icon: SvgIconData('assets/scroll.svg')), label: 'wallet'),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person), label: 'user profile')
-        ],
+              icon: currentIndex == 3 ? SvgIcon(size: 25,
+                icon: SvgIconData('assets/gearshape.fill.svg')):SvgIcon(size: 25,
+                  icon: SvgIconData('assets/gearshape.svg')), label: 'user profile')
+  ],
       ),
     );
   }

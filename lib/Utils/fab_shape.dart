@@ -45,7 +45,7 @@ class FabShape extends ShapeBorder {
   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     // Define the gradient
     const gradient = LinearGradient(
-      colors: [Color.fromRGBO(125, 0, 202, 1), Color.fromRGBO(165, 99, 229, 1)],
+      colors: [Color.fromRGBO(61, 77, 217, 1), Color.fromRGBO(46,57,154,1)],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
     );
