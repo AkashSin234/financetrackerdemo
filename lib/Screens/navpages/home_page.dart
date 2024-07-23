@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors
                 .transparent, // Make background transparent to see the custom shape
             elevation: 0,
-            splashColor: Colors.black, // Remove elevation
+             // Remove elevation
             child: const Icon(
               Icons.add,
               color: Colors.white,
