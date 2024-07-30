@@ -1,3 +1,4 @@
+import 'package:finance_tracker/Screens/navpages/wallet_page.dart';
 import 'package:finance_tracker/Utils/fab_shape.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,9 +123,17 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           const SizedBox(
-            height: 30,
+            height: 40,
           ),
-          const Text('List comes here'),
+          Row(
+            children: [
+              Container(margin: const EdgeInsets.only(left: 10),child :Text('Your Categories', style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey),),),
+              IconButton(onPressed: 
+              (){}, icon: Icon(Icons.add_circle_sharp, size: 12,)),
+              Expanded(child: Container()),
+              TextButton(onPressed: (){}, child: Row(children: [Text('Sort By' ,style: GoogleFonts.inter(color: Color.fromRGBO(41, 47, 51, 1), fontSize: 12, fontWeight: FontWeight.w600),), Icon(Icons.keyboard_arrow_down_sharp)],),)
+            ],
+          ),
         ],
       ),
       floatingActionButton: Stack(
