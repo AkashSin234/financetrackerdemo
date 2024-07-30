@@ -32,7 +32,6 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        
         type: BottomNavigationBarType.fixed,
         onTap: onTap,
         currentIndex: currentIndex,
@@ -41,24 +40,36 @@ class _MainScreenState extends State<MainScreen> {
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items:  [
+        items: [
           BottomNavigationBarItem(
-              icon: currentIndex == 0 ? SvgIcon(size: 25,
-                icon: SvgIconData('assets/house.fill.svg')):SvgIcon(size: 25,
-                  icon: SvgIconData('assets/house.svg')), label: 'recent transactions'),
+              icon: currentIndex == 0
+                  ? SvgIcon(
+                      size: 29, icon: SvgIconData('assets/house.fill.svg'))
+                  : SvgIcon(size: 27, icon: SvgIconData('assets/house.svg')),
+              label: 'recent transactions'),
           BottomNavigationBarItem(
-              icon: currentIndex == 1 ? SvgIcon(size: 25,
-                icon: SvgIconData('assets/creditcard.fill.svg')):SvgIcon(size: 25,
-                  icon: SvgIconData('assets/creditcard.svg'),),
+              icon: currentIndex == 1
+                  ? SvgIcon(
+                      size: 23, icon: SvgIconData('assets/creditcard.fill.svg'))
+                  : SvgIcon(
+                      size: 21,
+                      icon: SvgIconData('assets/creditcard.svg'),
+                    ),
               label: 'home'),
-          BottomNavigationBarItem(icon: currentIndex == 2 ? SvgIcon(size: 25,
-            icon: SvgIconData('assets/scroll.fill.svg')):SvgIcon(size: 25,
-              icon: SvgIconData('assets/scroll.svg')), label: 'wallet'),
           BottomNavigationBarItem(
-              icon: currentIndex == 3 ? SvgIcon(size: 25,
-                icon: SvgIconData('assets/gearshape.fill.svg')):SvgIcon(size: 25,
-                  icon: SvgIconData('assets/gearshape.svg')), label: 'user profile')
-  ],
+              icon: currentIndex == 2
+                  ? SvgIcon(
+                      size: 27, icon: SvgIconData('assets/scroll.fill.svg'))
+                  : SvgIcon(size: 25, icon: SvgIconData('assets/scroll.svg')),
+              label: 'wallet'),
+          BottomNavigationBarItem(
+              icon: currentIndex == 3
+                  ? SvgIcon(
+                      size: 27, icon: SvgIconData('assets/gearshape.fill.svg'))
+                  : SvgIcon(
+                      size: 25, icon: SvgIconData('assets/gearshape.svg')),
+              label: 'user profile')
+        ],
       ),
     );
   }
