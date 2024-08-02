@@ -1,78 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:finance_tracker/models/data.dart';
-import 'colorpallette.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'colorpallette.dart';
+import 'package:finance_tracker/models/expense.dart';
 
 class ExpenseTile extends StatelessWidget {
-  final String? id;
-  final String categoryName;
-  final String categoryIcon;
-  final Color categoryIconColor;
-  final int amountSpent;
-  final int remainingAmount;
-  final RemainingAmountStatus remainingAmountStatus;
-  const ExpenseTile(
-      {super.key,
-      this.id,
-      required this.amountSpent,
-      required this.categoryIcon,
-      required this.categoryIconColor,
-      required this.categoryName,
-      required this.remainingAmount,
-      this.remainingAmountStatus = RemainingAmountStatus.left});
+  final Category category;
+
+  const ExpenseTile({
+    super.key,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Stack(
-          children: [
-            Container(
-              height: 47,
-              width: 47,
-              color: categoryIconColor,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
+        // Icon Container
+        Container(
+          height: 47,
+          width: 47,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: category.categoryIconColor,
+          ),
+          child: Center(
+            child: Text(
+              category.categoryIcon,
+              style: const TextStyle(fontSize: 27),
             ),
-            Text(categoryIcon),
-          ],
+          ),
         ),
-        Column(
-          children: [
-            Text(
-              categoryName,
-              style: GoogleFonts.inter(
+
+        // Spacing between icon and details
+        const SizedBox(width: 10),
+
+        // Expense Details Column
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Category Name
+              Text(
+                category.categoryName,
+                style: GoogleFonts.inter(
                   color: Colors.black,
                   fontSize: 15,
-                  fontWeight: FontWeight.w600),
-            ),
-            Row(
-              children: [
-                Text('Spent '),
-                Text(
-                  '$amountSpent',
-                  style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w600,
                 ),
-                Expanded(child: Container()),
-                Center(
-                  child: CapsuleTextWidget(
-                    text: amountSpent > remainingAmount
-                        ? '- $remainingAmount'
-                        : 'Left $remainingAmount',
-                    backgroundColor: amountSpent > remainingAmount
+              ),
+              const SizedBox(height: 4),
+
+              // Spent and Remaining Amount Row
+              Row(
+                children: [
+                  // Spent Amount
+                  Text(
+                    'Spent \$${category.amountSpent}',
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+
+                  // Remaining Amount
+                  CapsuleTextWidget(
+                    text: category.remainingAmountStatus ==
+                            RemainingAmountStatus.exceeded
+                        ? '- \$${category.remainingAmount}'
+                        : 'Left \$${category.remainingAmount}',
+                    backgroundColor: category.remainingAmountStatus ==
+                            RemainingAmountStatus.exceeded
                         ? ColorPallette.shared.redCapsule
                         : ColorPallette.shared.greenCapsule,
-                    textColor: amountSpent > remainingAmount
-                        ? Color(0xFF780000)
-                        : Color(0xFF007837),
+                    textColor: category.remainingAmountStatus ==
+                            RemainingAmountStatus.exceeded
+                        ? const Color(0xFF780000)
+                        : const Color(0xFF007837),
                   ),
-                ),
-              ],
-            ),
-            Text('Progress Bar'),
-          ],
-        )
+                ],
+              ),
+              const SizedBox(height: 6),
+
+              // Progress Bar (Placeholder)
+              LinearProgressIndicator(
+                value: 10,
+                backgroundColor: Colors.grey[200],
+                color: ColorPallette.shared.greenCapsule,
+                minHeight: 6,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -93,34 +112,19 @@ class CapsuleTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(20), // Capsule shape
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         text,
         style: TextStyle(
           color: textColor,
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.bold,
         ),
       ),
     );
-  }
-}
-
-enum RemainingAmountStatus { left, exceeded }
-
-extension RemainingAmountStatusExtension on RemainingAmountStatus {
-  Color get capsuleColor {
-    switch (this) {
-      case RemainingAmountStatus.left:
-        return ColorPallette.shared.greenCapsule;
-      case RemainingAmountStatus.exceeded:
-        return ColorPallette.shared.redCapsule;
-      default:
-        return Colors.transparent;
-    }
   }
 }
