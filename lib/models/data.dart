@@ -1,7 +1,6 @@
 import 'expense.dart';
 import 'package:finance_tracker/Utils/colorpallette.dart';
 
-
 final List<Category> categories = [
   Category(
     categoryName: "Food",

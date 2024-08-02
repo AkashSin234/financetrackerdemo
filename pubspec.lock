@@ -89,27 +89,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  fluentui_system_icons:
-    dependency: "direct main"
-    description:
-      name: fluentui_system_icons
-      sha256: a4f23941abaaea65db9d833d8697af5d058b9a871ae8697bc48d18d7a69e1189
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.248"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_emoji:
-    dependency: "direct main"
-    description:
-      name: flutter_emoji
-      sha256: "3cc794d2459738e6489cee63f50e85de3732257042f425611d255c8049ce1b81"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.5.1"
   flutter_lints:
     dependency: "direct dev"
     description:

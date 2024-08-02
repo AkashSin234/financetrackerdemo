@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 import '../Utils/colorpallette.dart';
 
 class Category {
-  final String id;
+  final String? id;
   final String categoryName;
   final String categoryIcon;
   final Color categoryIconColor;
