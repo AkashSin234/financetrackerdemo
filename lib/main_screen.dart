@@ -36,37 +36,41 @@ class _MainScreenState extends State<MainScreen> {
         onTap: onTap,
         currentIndex: currentIndex,
         backgroundColor: Colors.white,
-        selectedItemColor: Color.fromRGBO(61, 77, 217, 1),
+        selectedItemColor: const Color.fromRGBO(61, 77, 217, 1),
         unselectedItemColor: Colors.grey.withOpacity(0.5),
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
               icon: currentIndex == 0
-                  ? SvgIcon(
+                  ? const SvgIcon(
                       size: 29, icon: SvgIconData('assets/house.fill.svg'))
-                  : SvgIcon(size: 27, icon: SvgIconData('assets/house.svg')),
+                  : const SvgIcon(
+                      size: 27, icon: SvgIconData('assets/house.svg')),
               label: 'recent transactions'),
           BottomNavigationBarItem(
               icon: currentIndex == 1
-                  ? SvgIcon(
-                      size: 23, icon: SvgIconData('assets/creditcard.fill.svg'))
-                  : SvgIcon(
-                      size: 21,
-                      icon: SvgIconData('assets/creditcard.svg'),
+                  ? const SvgIcon(
+                      size: 27, icon: SvgIconData('assets/scroll.fill.svg'))
+                  : const SvgIcon(
+                      size: 25,
+                      icon: SvgIconData('assets/scroll.svg'),
                     ),
               label: 'home'),
           BottomNavigationBarItem(
               icon: currentIndex == 2
-                  ? SvgIcon(
-                      size: 27, icon: SvgIconData('assets/scroll.fill.svg'))
-                  : SvgIcon(size: 25, icon: SvgIconData('assets/scroll.svg')),
+                  ? const SvgIcon(
+                      size: 23,
+                      icon: SvgIconData('assets/wallet.bifold.fill.svg'))
+                  : const SvgIcon(
+                      size: 21,
+                      icon: const SvgIconData('assets/wallet.bifold.svg')),
               label: 'wallet'),
           BottomNavigationBarItem(
               icon: currentIndex == 3
-                  ? SvgIcon(
+                  ? const SvgIcon(
                       size: 27, icon: SvgIconData('assets/gearshape.fill.svg'))
-                  : SvgIcon(
+                  : const SvgIcon(
                       size: 25, icon: SvgIconData('assets/gearshape.svg')),
               label: 'user profile')
         ],

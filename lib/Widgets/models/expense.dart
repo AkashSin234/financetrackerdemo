@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-import '../Utils/colorpallette.dart';
+import '../../Utils/colorpallette.dart';
 
 class Category {
   final String? id;

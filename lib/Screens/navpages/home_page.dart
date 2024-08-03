@@ -1,7 +1,8 @@
 import 'package:finance_tracker/Utils/expensetile.dart';
-import 'package:finance_tracker/models/action_button.dart';
-import 'package:finance_tracker/models/appbar.dart';
-import 'package:finance_tracker/models/expenses_list.dart';
+import 'package:finance_tracker/Utils/fab_shape.dart';
+import 'package:finance_tracker/Widgets/action_button.dart';
+import 'package:finance_tracker/Widgets/appbar.dart';
+import 'package:finance_tracker/Widgets/models/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -103,25 +104,30 @@ class _HomePageState extends State<HomePage> {
                     height: 40,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    padding: const EdgeInsets.only(left: 4, right: 4),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(children: [
-                          Text(
-                            'Your Categories',
-                            style: GoogleFonts.inter(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.add_circle_sharp,
-                                size: 12,
-                              )),
-                        ]),
+                        TextButton(
+                          onPressed: () {},
+                          child: Row(children: [
+                            Text(
+                              'Your Categories',
+                              style: GoogleFonts.inter(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color.fromRGBO(204, 204, 204, 1)),
+                            ),
+                            const SizedBox(
+                              width: 4,
+                            ),
+                            const Icon(
+                              Icons.add_circle_rounded,
+                              size: 14,
+                              color: Colors.black,
+                            )
+                          ]),
+                        ),
                         TextButton(
                           onPressed: () {},
                           child: Row(
@@ -140,14 +146,14 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    child: const ExpensesList(),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16),
+                    child: ExpensesList(),
                   )
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

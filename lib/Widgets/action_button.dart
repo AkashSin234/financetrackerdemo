@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:finance_tracker/Utils/fab_shape.dart';
 
 class ActionButton extends StatelessWidget {
+  const ActionButton({super.key});
   @override
   Widget build(BuildContext context) {
     return Stack(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'colorpallette.dart';
-import 'package:finance_tracker/models/expense.dart';
+import 'package:finance_tracker/Widgets/models/expense.dart';
+import 'package:intl/intl.dart';
 
 class ExpenseTile extends StatelessWidget {
   final Category category;
@@ -13,6 +14,13 @@ class ExpenseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberFormat = NumberFormat('#,##0');
+
+    // Format the amounts with commas
+    final formattedSpentAmount = numberFormat.format(category.amountSpent);
+    final formattedRemainingAmount =
+        numberFormat.format(category.remainingAmount);
+
     return Row(
       children: [
         // Icon Container
@@ -48,27 +56,41 @@ class ExpenseTile extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 1),
 
               // Spent and Remaining Amount Row
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Spent Amount
-                  Text(
-                    'Spent \$${category.amountSpent}',
-                    style: GoogleFonts.inter(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Spent ',
+                          style: GoogleFonts.inter(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        TextSpan(
+                          text: '₹$formattedSpentAmount',
+                          style: GoogleFonts.inter(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const Spacer(),
 
                   // Remaining Amount
                   CapsuleTextWidget(
                     text: category.remainingAmountStatus ==
                             RemainingAmountStatus.exceeded
-                        ? '- \$${category.remainingAmount}'
-                        : 'Left \$${category.remainingAmount}',
+                        ? '- ₹$formattedRemainingAmount'
+                        : 'Left ₹$formattedRemainingAmount',
                     backgroundColor: category.remainingAmountStatus ==
                             RemainingAmountStatus.exceeded
                         ? ColorPallette.shared.redCapsule
@@ -80,14 +102,17 @@ class ExpenseTile extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
+              const SizedBox(
+                height: 2,
+              ),
 
               // Progress Bar (Placeholder)
               LinearProgressIndicator(
-                value: 10,
+                value: 0.5,
                 backgroundColor: Colors.grey[200],
-                color: ColorPallette.shared.greenCapsule,
-                minHeight: 6,
+                color: const Color.fromRGBO(61, 77, 217, 1),
+                minHeight: 9,
+                borderRadius: BorderRadius.circular(15),
               ),
             ],
           ),
@@ -111,18 +136,34 @@ class CapsuleTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final parts = text.split(RegExp(r'\s+'));
+    final String amount = parts.length > 1 ? parts[1] : '';
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      height: 18,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(17.5),
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: textColor,
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: parts[0] + '',
+              style: TextStyle(
+                color: textColor,
+                fontSize: 12,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            TextSpan(
+                text: amount,
+                style: TextStyle(
+                    color: textColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold))
+          ],
         ),
       ),
     );
