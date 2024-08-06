@@ -103,7 +103,7 @@ class ExpenseTile extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 2,
+                height: 3,
               ),
 
               // Progress Bar (Placeholder)
@@ -141,7 +141,7 @@ class CapsuleTextWidget extends StatelessWidget {
 
     return Container(
       height: 18,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(17.5),
@@ -150,7 +150,7 @@ class CapsuleTextWidget extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: parts[0] + '',
+              text: parts[0],
               style: TextStyle(
                 color: textColor,
                 fontSize: 12,

@@ -75,6 +75,8 @@ flutter:
   - assets/gearshape.fill.svg
   - assets/wallet.bifold.svg
   - assets/wallet.bifold.fill.svg
+  - assets/plus.svg
+  - assets/pencil.circle.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

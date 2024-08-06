@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppBarView extends StatefulWidget {
@@ -44,10 +45,18 @@ class _AppBarViewState extends State<AppBarView> {
               ],
             ),
             Expanded(child: Container()),
-            const Icon(
-              Icons.more_vert_outlined,
-              color: Colors.black,
-            ),
+            InkWell(
+              onTap: () {},
+              child: Ink(
+                child: const SvgIcon(
+                  icon: SvgIconData(
+                    'assets/pencil.circle.svg',
+                  ),
+                  color: Color.fromRGBO(61, 77, 217, 1),
+                  size: 19,
+                ),
+              ),
+            )
           ],
         ),
       ),

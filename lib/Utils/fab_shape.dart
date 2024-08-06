@@ -2,9 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class FabShape extends ShapeBorder {
-  final double borderRadius; // Radius for the rounded corners
+  final double borderRadius;
+  final String iconText;
 
-  const FabShape({this.borderRadius = 17.0});
+  const FabShape({this.borderRadius = 17.0, this.iconText = '+'});
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(borderRadius);
@@ -30,33 +31,52 @@ class FabShape extends ShapeBorder {
       ..rotateZ(pi / 4) // Rotate 45 degrees
       ..translate(-rect.center.dx, -rect.center.dy);
 
-    final transformedPath = path.transform(matrix.storage);
-
-    return transformedPath;
+    return path.transform(matrix.storage);
   }
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     return getOuterPath(rect,
-        textDirection: textDirection); //innerpath is same as outer path
+        textDirection: textDirection); // Inner path is same as outer path
   }
 
   @override
   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    // Define the gradient
-    const gradient = LinearGradient(
-      colors: [Color.fromRGBO(61, 77, 217, 1), Color.fromRGBO(46,57,154,1)],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    );
-
-    // Create a paint object for the gradient
+    // Create a paint object for the solid color
     final paint = Paint()
-      ..shader = gradient.createShader(rect)
+      ..color = Color.fromRGBO(61, 77, 217, 1)
       ..style = PaintingStyle.fill; // Use fill to cover the shape
 
-    // Draw the gradient shape
+    // Draw the shape
     canvas.drawPath(getOuterPath(rect), paint);
+
+    // Create a TextPainter to draw the plus icon/text in the center
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: iconText,
+        style: const TextStyle(
+          fontFamily: 'SFPro',
+          color: Colors.white,
+          fontSize: 32, // Adjust the size as needed
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    // Calculate the center of the shape
+    final centerX = rect.width / 2;
+    final centerY = rect.height / 2;
+
+    // Translate text position to be centered
+    final textOffset = Offset(
+      centerX - (textPainter.width / 2),
+      centerY - (textPainter.height / 2),
+    );
+
+    // Paint the text at the centered offset
+    textPainter.paint(canvas, textOffset);
   }
 
   @override
