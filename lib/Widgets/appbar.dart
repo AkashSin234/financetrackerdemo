@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_icons/flutter_svg_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:finance_tracker/Widgets/calender.dart'; // Import the Calendar file
 
 class AppBarView extends StatefulWidget {
   const AppBarView({super.key});
@@ -10,6 +12,35 @@ class AppBarView extends StatefulWidget {
 }
 
 class _AppBarViewState extends State<AppBarView> {
+  late DateTime _selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDate = DateTime.now();
+  }
+
+  void _showCalendarBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (context) {
+        return Calendar(
+          selectedDate: _selectedDate,
+          onDateSelected: (newDate) {
+            setState(() {
+              _selectedDate = newDate;
+            });
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,6 +48,7 @@ class _AppBarViewState extends State<AppBarView> {
         height: 80,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               width: 46,
@@ -26,35 +58,33 @@ class _AppBarViewState extends State<AppBarView> {
                 color: Colors.black,
               ),
             ),
-            const SizedBox(width: 6),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'good evening',
-                  style: GoogleFonts.inter(
-                    color: const Color.fromRGBO(61, 77, 217, 1),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
+            InkWell(
+              onTap: _showCalendarBottomSheet,
+              splashColor: Colors.transparent,
+              child: Row(
+                children: [
+                  Text('${DateFormat.MMMM().format(_selectedDate)}',
+                      style: GoogleFonts.inter(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500)),
+                  const SizedBox(width: 8),
+                  const SvgIcon(
+                    icon: SvgIconData('assets/chevron.down.circle.fill.svg'),
+                    size: 12,
+                    color: Color.fromRGBO(61, 77, 217, 1),
                   ),
-                ),
-                Text(
-                  'Prashant',
-                  style: GoogleFonts.inter(fontSize: 14, color: Colors.black),
-                ),
-              ],
+                ],
+              ),
             ),
-            Expanded(child: Container()),
             InkWell(
               onTap: () {},
-              child: Ink(
-                child: const SvgIcon(
-                  icon: SvgIconData(
-                    'assets/pencil.circle.svg',
-                  ),
-                  color: Color.fromRGBO(61, 77, 217, 1),
-                  size: 19,
+              child: const SvgIcon(
+                icon: SvgIconData(
+                  'assets/pencil.circle.svg',
                 ),
+                color: Color.fromRGBO(61, 77, 217, 1),
+                size: 19,
               ),
             )
           ],

@@ -1,3 +1,4 @@
+import 'package:finance_tracker/Screens/navpages/home_page.dart';
 import 'package:finance_tracker/main_screen.dart';
 
 import 'package:flutter/material.dart';

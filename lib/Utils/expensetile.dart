@@ -103,7 +103,7 @@ class ExpenseTile extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 3,
+                height: 4,
               ),
 
               // Progress Bar (Placeholder)
