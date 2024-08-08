@@ -20,7 +20,7 @@ class ExpensesList extends StatelessWidget {
           children: [
             ExpenseTile(category: categories[index]),
             const Divider(
-              height: 25,
+              height: 35,
               color: Colors.transparent,
             ), // Adds a divider between each ExpenseTile
           ],

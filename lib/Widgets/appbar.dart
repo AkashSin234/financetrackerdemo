@@ -25,8 +25,7 @@ class _AppBarViewState extends State<AppBarView> {
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
+            top: Radius.circular(20), bottom: Radius.circular(20)),
       ),
       builder: (context) {
         return Calendar(
@@ -46,7 +45,7 @@ class _AppBarViewState extends State<AppBarView> {
     return SafeArea(
       child: Container(
         height: 80,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
