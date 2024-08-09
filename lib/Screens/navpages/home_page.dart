@@ -1,5 +1,6 @@
 import 'package:finance_tracker/Utils/fab_shape.dart';
 import 'package:finance_tracker/Widgets/appbar.dart';
+import 'package:finance_tracker/Widgets/keyboard.dart';
 import 'package:finance_tracker/Widgets/models/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,6 +163,10 @@ class _HomePageState extends State<HomePage> {
             hoverColor: Colors.transparent,
 
             onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CustomKeyboard()));
               // Define the action when the FAB is pressed
             },
             backgroundColor: Colors.transparent, // Make background transparent

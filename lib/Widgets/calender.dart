@@ -35,7 +35,9 @@ class _CalendarState extends State<Calendar> {
         width: 398,
         padding: const EdgeInsets.all(16.0),
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          ),
           color: Colors.white,
         ),
         child: Column(

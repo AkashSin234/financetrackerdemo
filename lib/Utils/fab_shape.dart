@@ -4,8 +4,17 @@ import 'package:flutter/material.dart';
 class FabShape extends ShapeBorder {
   final double borderRadius;
   final String iconText;
+  final String fontFamily;
+  final double fontSize;
+  final FontWeight fontWeight;
 
-  const FabShape({this.borderRadius = 17.0, this.iconText = '+'});
+  const FabShape({
+    this.borderRadius = 17.0,
+    this.iconText = '+',
+    this.fontFamily = 'SFPro',
+    this.fontSize = 32.0,
+    this.fontWeight = FontWeight.bold,
+  });
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(borderRadius);
@@ -44,21 +53,21 @@ class FabShape extends ShapeBorder {
   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
     // Create a paint object for the solid color
     final paint = Paint()
-      ..color = Color.fromRGBO(61, 77, 217, 1)
+      ..color = const Color.fromRGBO(61, 77, 217, 1)
       ..style = PaintingStyle.fill; // Use fill to cover the shape
 
     // Draw the shape
     canvas.drawPath(getOuterPath(rect), paint);
 
-    // Create a TextPainter to draw the plus icon/text in the center
+    // Create a TextPainter to draw the icon/text in the center
     final textPainter = TextPainter(
       text: TextSpan(
         text: iconText,
-        style: const TextStyle(
-          fontFamily: 'SFPro',
+        style: TextStyle(
+          fontFamily: fontFamily,
           color: Colors.white,
-          fontSize: 32, // Adjust the size as needed
-          fontWeight: FontWeight.bold,
+          fontSize: fontSize,
+          fontWeight: fontWeight,
         ),
       ),
       textAlign: TextAlign.center,
@@ -80,5 +89,11 @@ class FabShape extends ShapeBorder {
   }
 
   @override
-  ShapeBorder scale(double t) => FabShape(borderRadius: borderRadius * t);
+  ShapeBorder scale(double t) => FabShape(
+        borderRadius: borderRadius * t,
+        iconText: iconText,
+        fontFamily: fontFamily,
+        fontSize: fontSize * t,
+        fontWeight: fontWeight,
+      );
 }
